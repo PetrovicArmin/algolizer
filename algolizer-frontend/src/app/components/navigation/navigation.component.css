@@ -1,0 +1,9 @@
+.navigation {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(30%, 1fr) );
+    text-align: center;
+}
+
+.hoverable:hover {
+    cursor: pointer;
+}
