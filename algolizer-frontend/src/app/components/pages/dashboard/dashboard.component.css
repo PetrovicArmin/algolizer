@@ -1,0 +1,54 @@
+.assignment_form {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    column-gap: 10px;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.add_button {
+    padding: 27px;
+}
+
+.item-container {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.about-text {
+    font-size: large;
+    margin: 20px;
+}
+
+.recommendations {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.subrecommendation-text {
+    font-style: italic;
+    font-size: large;
+}
+
+.chipMargin {
+    margin: 5px;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .recommendations {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }   
+}
+
+
+
+

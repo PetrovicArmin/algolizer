@@ -1,0 +1,54 @@
+<br><br><br>
+<div class="centered">
+    <span class="app-text">Choose an algorithm for revision/learning:</span><br><br>
+</div><br>
+<form class="centered assignment_form">
+    <mat-form-field>
+      <input [matAutocomplete]="auto" class="centered" type="text" name="problemType" [(ngModel)]="problemType" matInput placeholder="Problem type..." [formControl]="myControl">
+    </mat-form-field> 
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let type of filteredOptions | async" [value]="type">
+            {{ type }}
+        </mat-option>
+    </mat-autocomplete>
+    <button class="add_button" mat-raised-button color="primary" (click)="onStartLearning()">Start visualisation!</button>
+</form>
+<br><br><br>
+<div class="centered">
+    <span class="app-text">Based on user statistics, you should revise:</span><br><br><br>
+    <div class="recommendations" @insertRemoveRecommendations>
+            <div>
+                <mat-chip class="chipMargin" [ngStyle]="{'background-color': 'pink'}">
+                    <img matChipAvatar src="assets/img/dsa.png" alt="algorithm photo"/>
+                    <strong class="subrecommendation-text">Merge sort</strong>
+                </mat-chip>
+            </div>
+            <div>
+                <mat-chip class="chipMargin" [ngStyle]="{'background-color': 'pink'}">
+                    <img matChipAvatar src="assets/img/dsa.png" alt="algorithm photo"/>
+                    <strong class="subrecommendation-text">Radix sort</strong>
+                </mat-chip>
+            </div>
+            <div>
+                <mat-chip class="chipMargin" [ngStyle]="{'background-color': 'pink'}">
+                    <img matChipAvatar src="assets/img/dsa.png" alt="Photo of a Shiba Inu"/>
+                    <strong class="subrecommendation-text">Bubble sort</strong>
+                </mat-chip>
+            </div>
+    </div>
+</div>
+<br><br><br><br><br>
+<div >
+    <h1 class="centered"><strong>About this application</strong></h1> <br>
+    <p class="about-text">
+        - Primary purpose of this application is visual revision and/or learning of sorting algorithms.
+         It is intended for all students of technical faculties, as well as algorithms enthusiasts who would like to know a thing or two about sorting algorithms.
+    </p>
+    <p class="about-text">
+        - 'Show statistics' option shows you summary information about all exercises that were done on this website, by all the users. This summary includes number of exercises, average points per one exercise, average points per algorithm, and other statistic info.
+    </p>
+    <p class="about-text">
+        - Application usage: firstly, you need to choose an algorithm you want to learn or revise from dropdown menu. After clicking the 'Start visualisation!' button, you will be prompted to interactive visualisation of the algorithm. When you finish the visualisation part, you will be prompted to do a short exercise that will test your knowledge of the algorithm. Array which is used for visualisation, as well as within excercise, is randomly generated.
+        As a result of the excercise, you will see your score. Your score will update overall database of statistics, that will then be used to find the thoughest algorithms, ie. the algorithms that you see on dashboard. This info is obtained from a complex recommendation-based system, which operates based on statistics data.
+    </p>
+</div>
