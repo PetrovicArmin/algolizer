@@ -20,12 +20,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
-
+import { BubbleSortComponent } from './components/pages/bubble-sort/bubble-sort.component';
+import { QuizComponent } from './components/pages/quiz/quiz.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    DashboardComponent
+    DashboardComponent,
+    BubbleSortComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,20 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
     HighlightModule,
     MatTableModule
   ],
-  providers: [],
+  providers: [
+    MatDialog,
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: <HighlightOptions>{
+        lineNumbers: true,
+        coreLibraryLoader: () => import('highlight.js/lib/core'),
+        languages: {
+          typescript: () => import('highlight.js/lib/languages/typescript')
+        },
+        themePath: 'assets/styles/dark-theme.css'
+      }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,3 +15,47 @@ export enum ProblemType {
     HASH_MAP_OPERATIONS = "Hashing structures and algorithms",
     RECURSION = "Recursion based algorithms"
 };
+
+export class BubbleSortStep {
+    isSwapped: boolean | undefined;
+    i: number | undefined;
+    j: number | undefined;
+    arr: number[] | undefined;
+    numOfSwaps: number | undefined;
+    line: number | undefined;
+    comparisonStatus: any;
+    isSwappedStatus: any;
+};
+
+export interface AlgorithmContext {
+    contextProperty: string;
+    propertyValue: string;
+};
+
+export class Quiz {
+    questions: Question[];
+    type: string;
+    code: string;
+    array: number[];
+
+    constructor() {
+        this.questions = [];
+        this.type = "";
+        this.code = "";
+        this.array = [];
+    }
+};
+
+export class Question {
+    text: string;
+    answer: string;
+    points: number;
+    userInput: string;
+
+    constructor() {
+        this.text = "";
+        this.answer = "";
+        this.points = 0;
+        this.userInput = "";
+    }
+}

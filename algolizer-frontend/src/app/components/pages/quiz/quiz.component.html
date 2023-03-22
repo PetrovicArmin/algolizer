@@ -1,0 +1,18 @@
+<div class="questionContainer col" *ngIf="quiz">
+    <br><br><br>
+    <p>Let there be array:[{{quiz.array}}]. If we have a {{quiz.type}} shown below, try to answer questions that follow:</p>
+    <pre><code [languages]="['typescript']" [lineNumbers]="true" [highlight]="quiz.code" ></code></pre>
+    <div class="answerContainer" *ngFor="let question of quiz.questions; let i = index;">
+        <p><br>{{i + 1}}. {{question.text}}</p>
+        <div>        
+            <mat-form-field>
+                <input class="" type="string" name="answer" [(ngModel)]="question.userInput" matInput placeholder="Your answer">
+            </mat-form-field> 
+        </div>
+    </div>
+    <div class="centered">
+        <mat-form-field>
+            <button class="add_button" mat-raised-button color="primary" (click)="onSubmit()">Submit answers</button>
+        </mat-form-field>
+    </div>
+</div>

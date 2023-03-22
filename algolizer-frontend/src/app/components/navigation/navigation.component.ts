@@ -11,7 +11,7 @@ export class NavigationComponent implements OnInit{
   version: string = "1.0.0";
 
   constructor(
-    private router: Router
+    public router: Router
   ){}
 
   ngOnInit(): void {

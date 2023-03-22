@@ -1,0 +1,39 @@
+<!--Za sada samo canvas prikaz napraviti, a ostalo će se lagano dodati!-->
+<div class="gridContainer">
+    <div class="div_auto_height"> 
+        <br>
+        <canvas class="pink_border" #myCanvas width="{{this.CANVAS_WIDTH}}" height="{{this.CANVAS_HEIGHT}}" style="background-color:white"></canvas>
+    </div>
+    <div class="div_auto_height">
+        <pre><code [languages]="['typescript']" [lineNumbers]="true" [highlight]="this.code" ></code></pre>
+    </div>
+    <div class="buttonContainer">
+        <div>
+            <button class="step_button" mat-raised-button color="primary" (click)="previousStep()">Previous step</button>
+        </div>
+        <div>
+            <button class="step_button" mat-raised-button color="primary" (click)="nextStep()">Next step</button>
+        </div>
+        <div>
+            <button class="step_button" mat-raised-button color="primary" (click)="testInitialization()">Test yourself!</button>
+        </div>
+    </div>
+    <div>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
+            <!-- Context property  Column -->
+            <ng-container matColumnDef="context-property">
+              <th mat-header-cell *matHeaderCellDef> Context property </th>
+              <td mat-cell *matCellDef="let element"> {{element.contextProperty}} </td>
+            </ng-container>
+          
+            <!-- Context value Column -->
+            <ng-container matColumnDef="property-value">
+              <th mat-header-cell *matHeaderCellDef> Property value </th>
+              <td mat-cell *matCellDef="let element"> {{element.propertyValue}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>
+</div>

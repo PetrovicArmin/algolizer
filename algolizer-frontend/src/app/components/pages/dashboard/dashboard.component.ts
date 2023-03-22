@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
 import { ProblemType } from 'src/app/app.models';
 
@@ -27,6 +28,9 @@ export class DashboardComponent implements OnInit{
   filteredOptions: Observable<string[]> = new Observable<string[]>;
   problemType: string = "";
 
+  constructor(
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -42,5 +46,15 @@ export class DashboardComponent implements OnInit{
 
   onStartLearning() {
     console.log(this.problemType);
+    switch(this.problemType) {
+      case 'Bubble sort algorithm': 
+        this.router.navigate(['/bubble-sort']);
+        break;
+      case 'Merge sort algorithm':
+        this.router.navigate(['/merge-sort']);
+        break;
+      default:
+        this.router.navigate(['/ostali-algoritmi']);
+    }
   }
 }

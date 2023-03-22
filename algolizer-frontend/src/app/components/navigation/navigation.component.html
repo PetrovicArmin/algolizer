@@ -3,7 +3,8 @@
     <div>
         <img routerLink="/" class="hoverable" src="assets/img/etf_logo_720.png" height="50" width="50" alt="ETF logo">
     </div>
-    <span>  
-        <button mat-raised-button color="primary" (click)="showStatistics()">Show statistics</button> 
+    <span >  
+        <button *ngIf="this.router.url == '/'" mat-raised-button color="primary" (click)="showStatistics()">Show statistics</button>
+        <span *ngIf="this.router.url != '/'">Algorithm analysis</span> 
     </span>
 </mat-toolbar>
