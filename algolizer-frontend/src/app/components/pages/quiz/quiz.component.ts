@@ -8,8 +8,9 @@ import { UiService } from 'src/app/services/ui.service';
   styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit{
-  quiz?: Quiz;
+  quiz: Quiz = {} as Quiz;
   answers: string[] = [];
+  answered: boolean = false;
 
   constructor(
     private uiService: UiService
@@ -21,8 +22,30 @@ export class QuizComponent implements OnInit{
 
 
   onSubmit(): void {
-    //ovdje obrađujemo odgovore, napravimo modal koji pokazuje šta je tačno odgovoreno, a šta pogrešno,
-    // i dajemo mogućnost da se ide na opciju statistika
-    //na pocijama statistika ćemo imat mock vrijednosti u tabeli koja predstavlja statistiku!
+    this.answered = true;
+    this.quiz.earnedPoints = 0;
+
+    for (let question of this.quiz?.questions) {
+      if (question.answer == question.userInput) {
+        question.correct = true;
+        this.quiz.earnedPoints += question.points;
+      }
+    }
+
+    this.uiService.toggleQuiz(this.quiz);
+  }
+
+  totalPoints() {
+    let total = 0;
+
+    for (let question of this.quiz.questions) {
+      total += question.points;
+    }
+
+    return total;
+  }
+
+  goToStatistics() {
+      console.log("Otišao sam na statistics page!");
   }
 }

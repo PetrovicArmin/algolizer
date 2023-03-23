@@ -3,16 +3,25 @@
     <p>Let there be array:[{{quiz.array}}]. If we have a {{quiz.type}} shown below, try to answer questions that follow:</p>
     <pre><code [languages]="['typescript']" [lineNumbers]="true" [highlight]="quiz.code" ></code></pre>
     <div class="answerContainer" *ngFor="let question of quiz.questions; let i = index;">
-        <p><br>{{i + 1}}. {{question.text}}</p>
+        <p>
+            <br>{{i + 1}}. {{question.text}} [{{question.points}} points]
+            <i *ngIf="answered && question.correct == true" class="fa fa-check-circle green" aria-hidden="true"></i>
+            <i *ngIf="answered && question.correct == false" class="fa fa-times-circle-o red" aria-hidden="true"></i>
+        </p>
+
         <div>        
-            <mat-form-field>
-                <input class="" type="string" name="answer" [(ngModel)]="question.userInput" matInput placeholder="Your answer">
+            <mat-form-field class="color">
+                <input type="string" name="answer" [(ngModel)]="question.userInput" matInput placeholder="Your answer">
             </mat-form-field> 
         </div>
     </div>
     <div class="centered">
-        <mat-form-field>
+        <mat-form-field *ngIf="!answered">
             <button class="add_button" mat-raised-button color="primary" (click)="onSubmit()">Submit answers</button>
         </mat-form-field>
+        <div *ngIf="answered">
+            <p>You scored {{quiz.earnedPoints}} out of {{totalPoints()}} points. Congratulations!</p>
+            <button class="add_button" mat-raised-button color="primary" (click)="goToStatistics()">Checkout statistics</button>
+        </div>
     </div>
 </div>

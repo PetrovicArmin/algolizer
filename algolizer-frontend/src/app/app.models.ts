@@ -37,8 +37,10 @@ export class Quiz {
     type: string;
     code: string;
     array: number[];
+    earnedPoints: number;
 
     constructor() {
+        this.earnedPoints = 0;
         this.questions = [];
         this.type = "";
         this.code = "";
@@ -51,10 +53,12 @@ export class Question {
     answer: string;
     points: number;
     userInput: string;
+    correct: boolean;
 
     constructor() {
+        this.correct = false;
         this.text = "";
-        this.answer = "";
+        this.answer = "0";
         this.points = 0;
         this.userInput = "";
     }

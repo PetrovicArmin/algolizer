@@ -9,6 +9,14 @@
     padding: 27px;
 }
 
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
 .answerContainer {
     display: grid;
     grid-template-columns: 4fr 1fr;

@@ -116,6 +116,7 @@ export class BubbleSortComponent implements OnInit, AfterViewInit{
     question = new Question();
     let iPos = this.randomizer.randomIntFromInterval(0,3);
     let jPos = this.randomizer.randomIntFromInterval(0,9);
+    question.points = 1;
     question.text = "On which position (0-indexed) will first number in array end up for (i,j) = (" + iPos.toString() + ", " + jPos.toString() + ")? (It is meant for you to find position before swap operation in that iteration)"; 
     question.answer = this.positionOfElementInIteration(steps, iPos, jPos, quiz.array[0], false).toString();
 
@@ -123,6 +124,7 @@ export class BubbleSortComponent implements OnInit, AfterViewInit{
 
     //fifth question
     question = new Question();
+    question.points = 1;
     iPos = this.randomizer.randomIntFromInterval(0,2);
     jPos = this.randomizer.randomIntFromInterval(0,5);
     question.text = "On which position (0-indexed) will last number in array end up for (i,j) = (" + iPos.toString() + ", " + jPos.toString() + ")? (It is meant for you to find position before swap operation in that iteration)"; 
@@ -132,6 +134,7 @@ export class BubbleSortComponent implements OnInit, AfterViewInit{
 
     //update question in ui service!
     this.uiService.toggleQuiz(quiz);
+    console.log(quiz);
 
     this.router.navigateByUrl("/quiz");
   }
