@@ -27,6 +27,24 @@ export class BubbleSortStep {
     isSwappedStatus: any;
 };
 
+export class MergeSortStep {
+    array: number[] | undefined;
+    left_array: number[] | undefined;
+    right_array: number[] | undefined;
+    sorted_array: number[] | undefined;
+    mid_position: number | undefined;
+    left_arr_position: number | undefined;
+    right_arr_position: number | undefined;
+    if_condition: undefined;
+    going_back: boolean | undefined;
+    going_forward: boolean | undefined;
+    merging: boolean | undefined;
+    recursion_depth: number | undefined;
+    line: number | undefined;
+    numOfFalse: number | undefined;
+    numOfTrue: number | undefined;
+};
+
 export interface AlgorithmContext {
     contextProperty: string;
     propertyValue: string;

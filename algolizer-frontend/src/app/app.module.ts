@@ -22,13 +22,16 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { BubbleSortComponent } from './components/pages/bubble-sort/bubble-sort.component';
 import { QuizComponent } from './components/pages/quiz/quiz.component';
+import { MergeSortComponent } from './components/pages/merge-sort/merge-sort.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     DashboardComponent,
     BubbleSortComponent,
-    QuizComponent
+    QuizComponent,
+    MergeSortComponent
   ],
   imports: [
     BrowserModule,
