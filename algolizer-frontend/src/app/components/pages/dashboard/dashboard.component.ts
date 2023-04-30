@@ -53,6 +53,9 @@ export class DashboardComponent implements OnInit{
       case 'Merge sort algorithm':
         this.router.navigate(['/merge-sort']);
         break;
+      case 'Insertion sort algorithm':
+        this.router.navigate(['insertion-sort']);
+        break;
       default:
         this.router.navigate(['/ostali-algoritmi']);
     }

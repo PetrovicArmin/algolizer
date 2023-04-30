@@ -32,6 +32,21 @@ export const ALGORITHMS = {
         '        }',
         '        return [...sortedArr, ...left, ...right]',
         '  }'
+    ] as string[],
+    INSERTION_SORT_CODE_ARRAY: [
+        '    function insertionSort(arr) {',
+        '        for (let i = 1; i < arr.length; i++) {',
+        '           let currentValue = arr[i];',
+        '           let j;',
+        '           for (j = i - 1; j >= 0; j--) {',
+        '               if (arr[j] <= currentValue)',
+        '                   break;',
+        '               arr[j + 1] = arr[j];',
+        '           }',
+        '           arr[j + 1] = currentValue;',
+        '        }',
+        '        return arr;',
+        '    }',
     ] as string[]
 };
 
@@ -48,7 +63,7 @@ export const generateAlgorithmCodeString = (pointerIndex: number, algorithmArray
     return finalString;
 };
 
-import { AlgorithmContext, BubbleSortStep } from "./app.models";
+import { AlgorithmContext, BubbleSortStep, InsertionSortStep } from "./app.models";
 
 export const createAlgorithmContextArray = (contextProperties: string[], contextValues: string[]): AlgorithmContext[] => {
     let contextArray: AlgorithmContext[] = [];
@@ -89,6 +104,104 @@ let step: any = { //možda ukloniti kasnije.
     going_back: false,
     going_forward: false
 };
+
+export const insertionSortStepsGenerator = (arr: number[]): InsertionSortStep[] => {
+    let step: InsertionSortStep = {
+        array: deepArray(arr),
+        currentValue: undefined,
+        i: undefined,
+        j: undefined,
+        line: 0,
+        numOfSwaps: 0,
+        if_condition: undefined,
+        swap_happened: undefined
+    };
+
+    let steps: InsertionSortStep[] = [];
+
+    push(steps, step);
+
+    for (let i = 1; i < arr.length; i++) {
+
+        step.line = 1;
+        step.i = i;
+
+        push(steps, step);
+
+        let currentValue = arr[i];
+
+        step.currentValue = currentValue;
+        step.line = 2;
+
+        push(steps, step);
+
+        let j;
+
+        step.j = undefined;
+        step.line = 3;
+
+        for (j = i - 1; j >= 0; j--) {
+          step.line = 4;
+          step.j = j;
+
+          push(steps, step);
+
+          if (arr[j] <= currentValue) {
+            step.line = 5;
+            step.if_condition = true;
+            push(steps, step);
+            step.if_condition = undefined;
+            break;
+          }
+
+          step.line = 5;
+          step.if_condition = false;
+          
+          push(steps, step);
+
+          step.if_condition = undefined;
+
+          arr[j + 1] = arr[j];
+
+          step.array = deepArray(arr);
+          step.line = 7;
+
+          push(steps, step);
+        }
+        step.j = j;
+        console.log(j);
+
+        arr[j + 1] = currentValue;
+
+        step.line = 9;
+        step.array = deepArray(arr);
+        
+        push(steps, step);
+
+        if (j + 1 != i) {
+            step.line = 10;
+            if (step.numOfSwaps != undefined)
+                step.numOfSwaps = step.numOfSwaps + 1;
+            step.swap_happened = true;
+            
+            push(steps, step);
+            step.swap_happened = undefined;
+        } else {
+            step.line = 10;
+            step.swap_happened = false;
+            push(steps, step);
+            step.swap_happened = undefined;
+        }
+      }
+
+      step.line = 11;
+      step.i = undefined;
+      step.j = undefined;
+      step.currentValue = undefined;
+      
+      push(steps, step);
+      return steps;
+}
 
 export const mergeSortStepsGenerator = (arr: number[], steps: any[], step: any): any => {
     step = {

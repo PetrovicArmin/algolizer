@@ -23,6 +23,7 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
 import { BubbleSortComponent } from './components/pages/bubble-sort/bubble-sort.component';
 import { QuizComponent } from './components/pages/quiz/quiz.component';
 import { MergeSortComponent } from './components/pages/merge-sort/merge-sort.component';
+import { InsertionSortComponent } from './components/pages/insertion-sort/insertion-sort.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MergeSortComponent } from './components/pages/merge-sort/merge-sort.com
     DashboardComponent,
     BubbleSortComponent,
     QuizComponent,
-    MergeSortComponent
+    MergeSortComponent,
+    InsertionSortComponent
   ],
   imports: [
     BrowserModule,

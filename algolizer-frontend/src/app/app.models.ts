@@ -2,6 +2,7 @@ export enum ProblemType {
     MERGE_SORT = "Merge sort algorithm",
     QUICK_SORT = "Quick sort algorithm",
     BUBBLE_SORT = "Bubble sort algorithm",
+    INSERTION_SORT = "Insertion sort algorithm",
     BINARY_SEARCH = "Binary search on sorted array",
     LINKED_LIST_OPERATIONS = "Linked list operations",
     QUEUE_BFS = "Queue algorithms analysis",
@@ -44,6 +45,18 @@ export class MergeSortStep {
     numOfFalse: number | undefined;
     numOfTrue: number | undefined;
 };
+
+export class InsertionSortStep {
+    array: number[] | undefined;
+    i: number | undefined;
+    j: number | undefined;
+    numOfSwaps: number | undefined;
+    line: number | undefined;
+    currentValue: number | undefined;
+    if_condition: boolean | undefined;
+    swap_happened: boolean | undefined;
+    //ako bude još nešto trebalo, nije problem dodati.
+}
 
 export interface AlgorithmContext {
     contextProperty: string;
