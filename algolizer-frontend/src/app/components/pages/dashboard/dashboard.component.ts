@@ -56,6 +56,9 @@ export class DashboardComponent implements OnInit{
       case 'Insertion sort algorithm':
         this.router.navigate(['insertion-sort']);
         break;
+      case 'Quick sort algorithm':
+        this.router.navigate(['quick-sort']);
+        break;
       default:
         this.router.navigate(['/ostali-algoritmi']);
     }

@@ -47,7 +47,25 @@ export const ALGORITHMS = {
         '        }',
         '        return arr;',
         '    }',
-    ] as string[]
+    ] as string[],
+    QUICK_SORT_CODE_ARRAY: [
+        '   function quickSort(arr) {',
+        '       if (arr.length <= 1)',
+        '           return arr;',
+        '    ',
+        '       const pivot = arr[arr.length - 1];',
+        '       let left_array = []; let right_array = [];',
+        '    ',
+        '       for (let i = 0; i < arr.length - 1; i++)',
+        '           arr[i] < pivot ? left_array.push(arr[i]) : right_array.push(arr[i]);',
+        '    ',
+        '       left_array = quickSort(left_array);',
+        '',
+        '       right_array = quickSort(right_array);',
+        '    ',
+        '       return [...left_array, pivot, ...right_array];',
+        '}   ',
+    ]
 };
 
 
@@ -63,7 +81,7 @@ export const generateAlgorithmCodeString = (pointerIndex: number, algorithmArray
     return finalString;
 };
 
-import { AlgorithmContext, BubbleSortStep, InsertionSortStep } from "./app.models";
+import { AlgorithmContext, BubbleSortStep, InsertionSortStep, QuickSortStep } from "./app.models";
 
 export const createAlgorithmContextArray = (contextProperties: string[], contextValues: string[]): AlgorithmContext[] => {
     let contextArray: AlgorithmContext[] = [];
@@ -90,20 +108,114 @@ const deepArray = (arr: number[] | undefined) => {
 //steps objekat / niz će biti izgrađen kroz rekurziju, jer se cijelo vrijeme radi o istoj referenci
 //odnosno, o različitim referencama na isti objekat!
 
-let step: any = { //možda ukloniti kasnije.
-    array: [],
-    left_array: [],
-    right_array: [],
-    sorted_array: [],
-    mid_position: 0,
-    left_arr_position: 0,
-    right_arr_position: 0,
-    recursion_depth: -1,
-    line: 0,
-    if_condition: undefined,
-    going_back: false,
-    going_forward: false
-};
+
+export const quickSortStepsGenerator = (arr: number[], steps: QuickSortStep[], step: QuickSortStep): any => {
+    step = {
+        array: deepArray(arr),
+        baseCase: undefined,
+        going_back: false,
+        going_forward: false,
+        greaterThanPivot: undefined,
+        i: undefined,
+        left_array: undefined,
+        right_array: undefined,
+        line: 0,
+        pivot: undefined,
+        recursion_depth: step.recursion_depth + 1,
+        sorted_array: undefined
+    };
+
+    push(steps, step);
+
+
+    if (arr.length <= 1) { 
+        step.baseCase = true;
+        step.going_back = true;
+        step.line = 2;
+        
+        push(steps, step);
+        return arr;
+    }
+
+
+
+    const pivot = arr[arr.length - 1]; 
+
+    step.line = 4;
+    step.pivot = pivot;
+
+    push(steps, step);
+
+    let left_array: number[] = []; let right_array: number[] = [];
+
+    step.line = 5;
+    
+    push(steps, step);
+
+    for (let i = 0; i < arr.length - 1; i++) {
+        step.line = 7;
+        step.i = i;
+        
+        push(steps, step);
+
+        step.line = 8;
+        
+//        arr[i] < pivot ? left_array.push(arr[i]) : right_array.push(arr[i]);
+
+        if (arr[i] < pivot) {
+            step.greaterThanPivot = false;
+            left_array.push(arr[i]);
+            step.left_array = deepArray(left_array);
+            
+            push(steps, step);
+        } else {
+            step.greaterThanPivot = true;
+            right_array.push(arr[i]);
+            step.right_array = deepArray(right_array);
+
+            push(steps, step);
+        }
+
+        step.greaterThanPivot = undefined;
+    }   
+    
+    step.i = undefined;
+    step.going_forward = true;
+    step.line = 10;
+
+    push(steps, step);
+    
+    left_array = quickSortStepsGenerator(left_array, steps, step);
+
+    step.going_forward = false;
+    step.line = 11;
+    step.left_array = deepArray(left_array);
+    
+    push(steps, step);
+
+    step.going_forward = true;
+    step.line = 12;
+    
+    push(steps, step);
+
+    right_array = quickSortStepsGenerator(right_array, steps, step);
+
+    step.going_forward = false;
+    step.line = 13;
+    step.right_array = deepArray(right_array);
+
+    push(steps, step);
+
+    let finalArray = [...left_array, pivot, ...right_array];
+
+    step.going_back = true;
+    step.line = 14;
+    step.sorted_array = deepArray(finalArray);
+
+    push(steps, step);
+
+    return finalArray;
+}
 
 export const insertionSortStepsGenerator = (arr: number[]): InsertionSortStep[] => {
     let step: InsertionSortStep = {

@@ -46,6 +46,21 @@ export class MergeSortStep {
     numOfTrue: number | undefined;
 };
 
+export class QuickSortStep {
+    array: number[] | undefined;
+    left_array: number[] | undefined;
+    right_array: number[] | undefined;
+    sorted_array: number[] | undefined;
+    pivot: number | undefined;
+    greaterThanPivot: boolean | undefined;
+    i: number | undefined;
+    baseCase: boolean | undefined;
+    line: number | undefined;
+    recursion_depth: number = -1;
+    going_back: boolean | undefined;
+    going_forward: boolean | undefined;
+};
+
 export class InsertionSortStep {
     array: number[] | undefined;
     i: number | undefined;

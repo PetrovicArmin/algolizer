@@ -5,13 +5,15 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
 import { QuizComponent } from './components/pages/quiz/quiz.component';
 import { MergeSortComponent } from './components/pages/merge-sort/merge-sort.component';
 import { InsertionSortComponent } from './components/pages/insertion-sort/insertion-sort.component';
+import { QuickSortComponent } from './components/pages/quick-sort/quick-sort.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'bubble-sort', component: BubbleSortComponent},
   {path: 'quiz', component: QuizComponent},
   {path: 'merge-sort', component: MergeSortComponent},
-  {path: 'insertion-sort', component: InsertionSortComponent}
+  {path: 'insertion-sort', component: InsertionSortComponent},
+  {path: 'quick-sort', component: QuickSortComponent}
 ];
 
 @NgModule({
