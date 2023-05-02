@@ -25,6 +25,7 @@ import { QuizComponent } from './components/pages/quiz/quiz.component';
 import { MergeSortComponent } from './components/pages/merge-sort/merge-sort.component';
 import { InsertionSortComponent } from './components/pages/insertion-sort/insertion-sort.component';
 import { QuickSortComponent } from './components/pages/quick-sort/quick-sort.component';
+import { SelectionSortComponent } from './components/pages/selection-sort/selection-sort.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { QuickSortComponent } from './components/pages/quick-sort/quick-sort.com
     QuizComponent,
     MergeSortComponent,
     InsertionSortComponent,
-    QuickSortComponent
+    QuickSortComponent,
+    SelectionSortComponent
   ],
   imports: [
     BrowserModule,

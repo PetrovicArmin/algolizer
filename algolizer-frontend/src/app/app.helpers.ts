@@ -65,6 +65,20 @@ export const ALGORITHMS = {
         '    ',
         '       return [...left_array, pivot, ...right_array];',
         '}   ',
+    ] as string[],
+    SELECTION_SORT_CODE_ARRAY: [
+        '    function selectionSort(arr) {',
+        '        for (let i = 0; i < arr.length; i++) {',
+        '           let min_ind = i;',
+        '           for (let j = i + 1; j < arr.length; j++)',
+        '               if (arr[j] < arr[min_ind])',
+        '                   min_ind = j;',
+        '    ',
+        '           if (min_ind !== i)',
+        '               swap(arr[i], arr[min_ind]);',
+        '        }',
+        '        return arr;',
+        '    }',
     ]
 };
 
@@ -81,7 +95,7 @@ export const generateAlgorithmCodeString = (pointerIndex: number, algorithmArray
     return finalString;
 };
 
-import { AlgorithmContext, BubbleSortStep, InsertionSortStep, QuickSortStep } from "./app.models";
+import { AlgorithmContext, BubbleSortStep, InsertionSortStep, QuickSortStep, SelectionSortStep } from "./app.models";
 
 export const createAlgorithmContextArray = (contextProperties: string[], contextValues: string[]): AlgorithmContext[] => {
     let contextArray: AlgorithmContext[] = [];
@@ -446,6 +460,96 @@ export const mergeSortStepsGenerator = (arr: number[], steps: any[], step: any):
     };
 };
 
+export const selectionSortStepsGenerator = (arr: number[]): SelectionSortStep[] => {
+    let step: SelectionSortStep = {
+        arr: deepArray(arr),
+        curr_min_element: undefined,
+        curr_min_position: undefined,
+        found_new_min_ind: undefined,
+        i: undefined,
+        j: undefined,
+        line: 0,
+        should_swap_elements: undefined,
+        numberOfSwaps: 0
+    };
+
+    let steps: SelectionSortStep[] = [];
+
+    push(steps, step);
+
+    for (let i = 0; i < arr.length; i++) {
+        step.curr_min_position = undefined;
+        step.curr_min_element = undefined;
+        step.i = i;
+        step.line = 1;
+        
+        push(steps, step);
+
+        let min_ind = i;
+
+        step.curr_min_position = min_ind;
+        step.curr_min_element = arr[min_ind];
+        step.line = 2;
+        
+        push(steps, step);
+
+        for (let j = i + 1; j < arr.length; j++)  {
+            
+            step.line = 3;
+            step.j = j;
+            
+            push(steps, step);
+            
+            step.line = 4;
+
+            if (arr[j] < arr[min_ind]){
+                step.found_new_min_ind = true;    
+                push(steps, step);
+                step.found_new_min_ind = undefined;
+
+                min_ind = j;  
+
+                step.line = 5;
+                step.curr_min_position = min_ind;
+                step.curr_min_element = arr[min_ind];
+            } else {
+                step.found_new_min_ind = false;
+                push(steps, step);
+                step.found_new_min_ind = undefined;
+            }
+
+        }
+
+        step.j = undefined;
+        step.line = 7;
+
+        if (min_ind !== i) {
+            step.should_swap_elements = true;
+            push(steps, step);
+            step.should_swap_elements = undefined;
+
+            [arr[i], arr[min_ind]] = [arr[min_ind], arr[i]]
+
+            step.numberOfSwaps = step.numberOfSwaps + 1;
+            step.line = 8;
+            step.arr = deepArray(arr);
+            
+            push(steps, step);
+        } else {
+            step.should_swap_elements = false;
+            push(steps, step);
+            step.should_swap_elements = undefined;
+        }  
+    }
+
+    step.i = undefined;
+    step.line = 10;
+
+    push(steps, step);
+
+    return steps;
+}
+
 export const bubbleSortStepsGenerator = (arr: number[]): BubbleSortStep[] => {      
     let falseCondition = true;
     let steps: BubbleSortStep[] = [];
@@ -471,7 +575,7 @@ export const bubbleSortStepsGenerator = (arr: number[]): BubbleSortStep[] => {
     push(steps, step);
 
     for(let i = 0; i < arr.length; i++){   
-
+      
       step.i = i;
       step.line = 2;  
       step.arr = deepArray(step.arr);

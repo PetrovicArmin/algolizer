@@ -3,6 +3,7 @@ export enum ProblemType {
     QUICK_SORT = "Quick sort algorithm",
     BUBBLE_SORT = "Bubble sort algorithm",
     INSERTION_SORT = "Insertion sort algorithm",
+    SELECTION_SORT = "Selection sort algorithm",
     BINARY_SEARCH = "Binary search on sorted array",
     LINKED_LIST_OPERATIONS = "Linked list operations",
     QUEUE_BFS = "Queue algorithms analysis",
@@ -26,6 +27,18 @@ export class BubbleSortStep {
     line: number | undefined;
     comparisonStatus: any;
     isSwappedStatus: any;
+};
+
+export class SelectionSortStep {
+    line: number | undefined;
+    arr: number[] | undefined;
+    i: number | undefined;
+    j: number | undefined;
+    curr_min_position: number | undefined;
+    found_new_min_ind: boolean | undefined;
+    curr_min_element: number | undefined;
+    should_swap_elements: boolean | undefined;
+    numberOfSwaps: number = 0;
 };
 
 export class MergeSortStep {
