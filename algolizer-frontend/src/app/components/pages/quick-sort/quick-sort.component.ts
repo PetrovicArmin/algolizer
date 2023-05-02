@@ -82,6 +82,7 @@ export class QuickSortComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+    //this.array = [25,52,13,91,12,82,27,86,2,25];
     this.array = this.randomizer.generateArrayOfInts(this.MIN_NUMBER_VALUE, this.MAX_NUMBER_VALUE, this.ARRAY_SIZE);
     quickSortStepsGenerator(this.array, this.steps, this.step);
     this.code = generateAlgorithmCodeString(0, ALGORITHMS.QUICK_SORT_CODE_ARRAY);  
@@ -101,7 +102,7 @@ export class QuickSortComponent implements OnInit, AfterViewInit {
     this.showStep(this.steps[this.currentStep]);
   }
 
-  findRecursionDepth(steps: MergeSortStep[]): number {
+  findRecursionDepth(steps: QuickSortStep[]): number {
     let biggestRecursion: number = -2;
 
     for (let step of steps) 
@@ -111,50 +112,61 @@ export class QuickSortComponent implements OnInit, AfterViewInit {
     return biggestRecursion - 1;
   }
 
-  findMiddleElement(steps: MergeSortStep[], recursionDepth: number): number {
+  numOfPushOperations(steps: QuickSortStep[], greaterThanPivot: boolean, recursionLevel: number) {
+    let numOfPushes = 0;
+
     for (let step of steps) {
-      console.log("Moj step je: ");
-      console.log(step);
-      if (step.array != undefined && step.recursion_depth != undefined && step.mid_position != undefined && step.recursion_depth == recursionDepth)
-        return step.array[step.mid_position];
+      if (step.recursion_depth != undefined && step.recursion_depth == recursionLevel) {
+        if (step.greaterThanPivot != undefined && step.greaterThanPivot == greaterThanPivot)
+          numOfPushes++;
+      }
     }
-    return -1000;
+
+    return numOfPushes;
+  }
+
+  numOfBaseCases(steps: QuickSortStep[], arraySize: number) {
+    let numOfBaseCases = 0;
+
+    for (let step of steps) {
+      if (step.array != undefined && step.baseCase != undefined && step.baseCase == true && step.array.length == arraySize)
+        numOfBaseCases++;
+    }
+
+    return numOfBaseCases;
   }
 
   testInitialization(): void {
-    return;
     const quiz = new Quiz();
 
+    //quiz.array = [25,52,13,91,12,82,27,86,2,25];
     quiz.array = this.randomizer.generateArrayOfInts(this.MIN_NUMBER_VALUE, this.MAX_NUMBER_VALUE, this.ARRAY_SIZE);
-    quiz.code = generateAlgorithmCodeString(0, ALGORITHMS.MERGE_SORT_CODE_ARRAY);
-    quiz.type = "Merge sort algorithm";
+    quiz.code = generateAlgorithmCodeString(0, ALGORITHMS.QUICK_SORT_CODE_ARRAY);
+    quiz.type = "Quick sort algorithm";
     quiz.questions = [];
 
-    let step: MergeSortStep = {
+    let step: QuickSortStep = {
       array: [],
-      left_array: [],
-      right_array: [],
-      sorted_array: [],
-      mid_position: 0,
-      left_arr_position: 0,
-      right_arr_position: 0,
+      baseCase: undefined,
       going_back: false,
       going_forward: false,
-      merging: false,
-      recursion_depth: -1,
-      if_condition: undefined,
+      greaterThanPivot: undefined,
+      i: undefined,
+      left_array: [],
+      right_array: [],
       line: 0,
-      numOfFalse: 0,
-      numOfTrue: 0
+      pivot: undefined,
+      recursion_depth: -1,
+      sorted_array: []
     };
 
-    let steps: MergeSortStep[] = [];
+    let steps: QuickSortStep[] = [];
     
-    mergeSortStepsGenerator(JSON.parse(JSON.stringify(quiz.array)), steps, step);
+    quickSortStepsGenerator(JSON.parse(JSON.stringify(quiz.array)), steps, step);
 
     //first question
     let question = new Question();
-    question.text = "What is the depth of the recursion (do not count situations where array length is less than 2):";
+    question.text = "What is the max depth of the recursion (do not count situations where array length is less than 2):";
     question.points = 2;
 
     const recursionDepth = this.findRecursionDepth(steps);
@@ -164,40 +176,33 @@ export class QuickSortComponent implements OnInit, AfterViewInit {
 
     //second question
     question = new Question();
-    question.text = "What is the middle element for recursion depth of zero (if multiple exists pick first of them)?";
+    question.text = "Number of push operations to 'left_array' on recursion level of 1?";
     question.points = 2;
-    question.answer = this.findMiddleElement(steps, 0).toString();
+    question.answer = this.numOfPushOperations(steps, false, 1).toString();
     
     quiz.questions.push(question);
 
     //third question
     question = new Question();
-    question.text = "What is the middle element for recursion depth of " + recursionDepth.toString() + "(if multiple exists pick first of them)?";
+    question.text = "Number of push operations to 'right_array' on maximum recursion level?";
     question.points = 2;
-    question.answer = this.findMiddleElement(steps, recursionDepth).toString();
+    question.answer = this.numOfPushOperations(steps, true, recursionDepth).toString();
     
     quiz.questions.push(question);
 
     //fourth question
     question = new Question();
     question.points = 3;
-    question.text = "How many times would the if statement of the algorithm be true?"; 
-    //let numOfTrue = steps[steps.length - 1].numOfTrue;
-
-    //if (numOfTrue)
-    //  question.answer = numOfTrue.toString();
+    question.text = "How many times there were a base case with array size of 1?"; 
+    question.answer = this.numOfBaseCases(steps, 1).toString();
 
     quiz.questions.push(question);
 
     //fifth question
     question = new Question();
     question.points = 3;
-    question.text = "How many times would the if statement of the algorithm be false?"; 
-  
-    //let numOfFalse = steps[steps.length - 1].numOfFalse;
-
-    //if (numOfFalse)
-    //  question.answer = numOfFalse.toString();
+    question.text = "How many times there were a base case with array size of 0?"; 
+    question.answer = this.numOfBaseCases(steps, 0).toString();
 
     quiz.questions.push(question);
 
