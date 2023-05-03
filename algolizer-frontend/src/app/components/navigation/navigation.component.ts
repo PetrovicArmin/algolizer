@@ -19,6 +19,6 @@ export class NavigationComponent implements OnInit{
   }
 
   showStatistics() {
-    this.router.navigate(['./statistics']);
+    this.router.navigate(['statistics']);
   }
 }

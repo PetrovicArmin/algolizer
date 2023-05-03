@@ -26,6 +26,7 @@ import { MergeSortComponent } from './components/pages/merge-sort/merge-sort.com
 import { InsertionSortComponent } from './components/pages/insertion-sort/insertion-sort.component';
 import { QuickSortComponent } from './components/pages/quick-sort/quick-sort.component';
 import { SelectionSortComponent } from './components/pages/selection-sort/selection-sort.component';
+import { StatisticsComponent } from './components/pages/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SelectionSortComponent } from './components/pages/selection-sort/select
     MergeSortComponent,
     InsertionSortComponent,
     QuickSortComponent,
-    SelectionSortComponent
+    SelectionSortComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

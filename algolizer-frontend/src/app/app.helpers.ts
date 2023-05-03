@@ -83,6 +83,211 @@ export const ALGORITHMS = {
 };
 
 
+
+export const quiz_statistics: QuizResults[] = [
+    {
+        algorithm_name: "Selection sort algorithm",
+        correct_answers: 3,
+        earned_points: 10,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 0
+    },
+    {
+        algorithm_name: "Selection sort algorithm",
+        correct_answers: 2,
+        earned_points: 8,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 0
+    },
+    {
+        algorithm_name: "Selection sort algorithm",
+        correct_answers: 5,
+        earned_points: 13,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 1
+    },
+    {
+        algorithm_name: "Selection sort algorithm",
+        correct_answers: 1,
+        earned_points: 3,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 1
+    },
+    {
+        algorithm_name: "Selection sort algorithm",
+        correct_answers: 4,
+        earned_points: 11,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 2
+    },
+    {
+        algorithm_name: "Insertion sort algorithm",
+        correct_answers: 2,
+        earned_points: 6,
+        max_points: 15,
+        num_of_questions: 5,
+        user_id: 0
+    },
+    {
+        algorithm_name: "Insertion sort algorithm",
+        correct_answers: 1,
+        earned_points: 3,
+        max_points: 14,
+        num_of_questions: 5,
+        user_id: 1
+    },
+    {
+        algorithm_name: "Insertion sort algorithm",
+        correct_answers: 5,
+        earned_points: 14,
+        max_points: 14,
+        num_of_questions: 5,
+        user_id: 0
+    },
+    {
+        algorithm_name: "Insertion sort algorithm",
+        correct_answers: 3,
+        earned_points: 8,
+        max_points: 15,
+        num_of_questions: 5,
+        user_id: 1
+    },
+    {
+        algorithm_name: "Insertion sort algorithm",
+        correct_answers: 4,
+        earned_points: 13,
+        max_points: 15,
+        num_of_questions: 5,
+        user_id: 2
+    },
+    {
+        algorithm_name: "Bubble sort algorithm",
+        correct_answers: 3,
+        earned_points: 7,
+        max_points: 11,
+        num_of_questions: 5,
+        user_id: 0
+    },
+    {
+        algorithm_name: "Bubble sort algorithm",
+        correct_answers: 4,
+        earned_points: 10,
+        max_points: 11,
+        num_of_questions: 5,
+        user_id: 0
+    },
+    {
+        algorithm_name: "Bubble sort algorithm",
+        correct_answers: 1,
+        earned_points: 3,
+        max_points: 11,
+        num_of_questions: 5,
+        user_id: 1
+    },
+    {
+        algorithm_name: "Bubble sort algorithm",
+        correct_answers: 3,
+        earned_points: 6,
+        max_points: 11,
+        num_of_questions: 5,
+        user_id: 1
+    },
+    {
+        algorithm_name: "Bubble sort algorithm",
+        correct_answers: 5,
+        earned_points: 11,
+        max_points: 11,
+        num_of_questions: 5,
+        user_id: 2
+    },
+    {
+        algorithm_name: "Merge sort algorithm",
+        correct_answers: 3,
+        earned_points: 10,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 0
+    },
+    {
+        algorithm_name: "Merge sort algorithm",
+        correct_answers: 2,
+        earned_points: 8,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 0
+    },
+    {
+        algorithm_name: "Merge sort algorithm",
+        correct_answers: 5,
+        earned_points: 13,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 1
+    },
+    {
+        algorithm_name: "Merge sort algorithm",
+        correct_answers: 1,
+        earned_points: 3,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 1
+    },
+    {
+        algorithm_name: "Merge sort algorithm",
+        correct_answers: 4,
+        earned_points: 11,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 2
+    },
+    {
+        algorithm_name: "Quick sort algorithm",
+        correct_answers: 3,
+        earned_points: 10,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 0
+    },
+    {
+        algorithm_name: "Quick sort algorithm",
+        correct_answers: 2,
+        earned_points: 8,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 0
+    },
+    {
+        algorithm_name: "Quick sort algorithm",
+        correct_answers: 5,
+        earned_points: 13,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 1
+    },
+    {
+        algorithm_name: "Quick sort algorithm",
+        correct_answers: 1,
+        earned_points: 3,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 1
+    },
+    {
+        algorithm_name: "Quick sort algorithm",
+        correct_answers: 4,
+        earned_points: 11,
+        max_points: 13,
+        num_of_questions: 5,
+        user_id: 2
+    },
+];
+
+
 export const generateAlgorithmCodeString = (pointerIndex: number, algorithmArray: string[]): string => {
     let finalString = "";
     for (let i = 0; i < algorithmArray.length; i++) {
@@ -95,7 +300,7 @@ export const generateAlgorithmCodeString = (pointerIndex: number, algorithmArray
     return finalString;
 };
 
-import { AlgorithmContext, BubbleSortStep, InsertionSortStep, QuickSortStep, SelectionSortStep } from "./app.models";
+import { AlgorithmContext, BubbleSortStep, InsertionSortStep, QuickSortStep, QuizResults, SelectionSortStep } from "./app.models";
 
 export const createAlgorithmContextArray = (contextProperties: string[], contextValues: string[]): AlgorithmContext[] => {
     let contextArray: AlgorithmContext[] = [];

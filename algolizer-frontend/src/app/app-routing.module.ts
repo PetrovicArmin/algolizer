@@ -7,6 +7,7 @@ import { MergeSortComponent } from './components/pages/merge-sort/merge-sort.com
 import { InsertionSortComponent } from './components/pages/insertion-sort/insertion-sort.component';
 import { QuickSortComponent } from './components/pages/quick-sort/quick-sort.component';
 import { SelectionSortComponent } from './components/pages/selection-sort/selection-sort.component';
+import { StatisticsComponent } from './components/pages/statistics/statistics.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'merge-sort', component: MergeSortComponent},
   {path: 'insertion-sort', component: InsertionSortComponent},
   {path: 'quick-sort', component: QuickSortComponent},
-  {path: 'selection-sort', component: SelectionSortComponent}
+  {path: 'selection-sort', component: SelectionSortComponent},
+  {path: 'statistics', component: StatisticsComponent}
 ];
 
 @NgModule({

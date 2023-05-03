@@ -107,6 +107,40 @@ export class Quiz {
     }
 };
 
+export class QuizResults {
+    algorithm_name: string;
+    user_id: number;
+    num_of_questions: number;
+    correct_answers: number;
+    max_points: number;
+    earned_points: number;
+
+    constructor() {
+        this.algorithm_name = "";
+        this.user_id = 0;
+        this.num_of_questions = 0;
+        this.correct_answers = 0;
+        this.max_points = 0;
+        this.earned_points = 0;
+    }
+};
+
+export class QuizTableRow {
+    algorithm_name: string;
+    number_of_users: string;
+    number_of_finished_quizes: string;
+    avg_correct_answers: string;
+    avg_number_of_points: string;
+
+    constructor() {
+        this.algorithm_name = "";
+        this.number_of_users = "";
+        this.number_of_finished_quizes = "";
+        this.avg_correct_answers = "";
+        this.avg_number_of_points = "";
+    }
+};
+
 export class Question {
     text: string;
     answer: string;
